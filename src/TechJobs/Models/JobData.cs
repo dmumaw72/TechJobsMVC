@@ -86,33 +86,17 @@ namespace TechJobs.Models
             LoadData();
 
             List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
-            if (column == "all")
+            
+            foreach (Dictionary<string, string> row in AllJobs)
             {
-                string[] colHeading = { "skill", "employer", "location", "position type" };
-                foreach (Dictionary<string, string> row in AllJobs)
-                {
-                    for (int i = 0; i < colHeading.Length; i++)
-                    {
-                        string aValue = colHeading[i];
-                        if (row[aValue].ToLower().Contains(value.ToLower()))
-                        {
-                            jobs.Add(row);
-                        }
-                    }
-                }
-            }
-            else
-            {
-                foreach (Dictionary<string, string> row in AllJobs)
-                {
-                    string aValue = row[column];
+                string aValue = row[column];
 
-                    if (aValue.ToLower().Contains(value.ToLower()))
-                    {
-                        jobs.Add(row);
-                    }
+                if (aValue.ToLower().Contains(value.ToLower()))
+                {
+                    jobs.Add(row);
                 }
             }
+           
 
             return jobs;
         }
